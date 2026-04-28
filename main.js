@@ -26,7 +26,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 const loader = new GLTFLoader();
 loader.load(
-  "./models/cartoon_vintage_car_stuts.glb",
+  "./models/classic_muscle_car.glb",
   (gltf) => {
     const model = gltf.scene;
     scene.add(model);
@@ -36,6 +36,17 @@ loader.load(
     console.error(error);
   },
 );
+
+window.addEventListener("resize", () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
 
 function animate() {
   controls.update();
