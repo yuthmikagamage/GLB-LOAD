@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Three GLB Loader</title>
-    <style>
-      body { margin: 0; }
-    </style>
-  </head>
-  <body>
-    <script type="module" src="./main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Three GLB Loader</title>
+
+  <style>
+    body { margin: 0; overflow: hidden; }
+    #ui {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+    }
+    .color-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    .red   { background: #ff0000; }
+    .green { background: #00ff00; }
+    .blue  { background: #0000ff; }
+
+    .color-btn:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="ui">
+    <button id="redBtn" class="color-btn red"></button>
+    <button id="greenBtn" class="color-btn green"></button>
+    <button id="blueBtn" class="color-btn blue"></button>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
 </html>

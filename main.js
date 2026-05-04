@@ -24,18 +24,38 @@ scene.add(light);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
+let targetMesh = null;
 const loader = new GLTFLoader();
 loader.load(
   "./models/classic_muscle_car.glb",
   (gltf) => {
     const model = gltf.scene;
     scene.add(model);
+
+    model.traverse((child) => {
+      if (child.isMesh && child.name === "Object_4") {
+        targetMesh = child;
+        console.log("Found mesh:", child);
+      }
+    });
   },
   undefined,
   (error) => {
     console.error(error);
   },
 );
+
+document.getElementById("redBtn").addEventListener("click", () => {
+  if (targetMesh) targetMesh.material.color.set(0xff0000);
+});
+
+document.getElementById("greenBtn").addEventListener("click", () => {
+  if (targetMesh) targetMesh.material.color.set(0x00ff00);
+});
+
+document.getElementById("blueBtn").addEventListener("click", () => {
+  if (targetMesh) targetMesh.material.color.set(0x0000ff);
+});
 
 window.addEventListener("resize", () => {
   const width = window.innerWidth;
